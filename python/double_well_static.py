@@ -20,7 +20,7 @@ def build_double_well_hamiltonian(
     y = np.linspace(-y_max, y_max, N)
     dy = y[1] - y[0]
 
-    # Вторая производная (оператор Лапласа в 1D, схема O(dy^2))
+    # Вторая производная (1D Лаплас, центральная разность O(dy^2))
     diag = np.full(N, -2.0)
     off = np.ones(N - 1)
     lap = (np.diag(diag) + np.diag(off, 1) + np.diag(off, -1)) / (dy**2)
@@ -52,7 +52,7 @@ def main():
     for i, Ei in enumerate(E):
         print(f"  E[{i}] = {Ei:.6f}")
 
-    # Рисуем потенциал и первые 2 волновые функции (масштабированные)
+    # Потенциал и первые 2 волновые функции (масштабированные)
     V = (y**2 - 1.0)**2
     plt.figure(figsize=(8, 5))
     plt.plot(y, V, "k-", label="V(y) = (y^2 - 1)^2")
